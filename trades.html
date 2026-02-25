@@ -645,6 +645,49 @@
         alert('Please include your name, a valid email, and a list of items.');
       }
     });
+
+(function () {
+    const btn = document.getElementById('mailtoBtn');
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('form-status');
+
+    // CHANGE THIS to your destination email
+    const TO_EMAIL = 'brendenryan99@gmail.com';
+    const SUBJECT = 'A1 Trading website contact';
+
+    function encode(v) { return encodeURIComponent(v || ''); }
+
+    btn?.addEventListener('click', () => {
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      // Simple client-side validation
+      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      if (!name || !emailOk || !message) {
+        status.textContent = 'Please enter your name, a valid email, and a message.';
+        return;
+      }
+
+      // Compose the email body with line breaks
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        '',
+        'Message:',
+        message
+      ].join('\n');
+
+      const mailtoUrl = `mailto:${encode(TO_EMAIL)}?subject=${encode(SUBJECT)}&body=${encode(body)}`;
+
+      // Open the user's email client
+      window.location.href = mailtoUrl;
+
+      // Optional: UI feedback
+      status.textContent = 'Opening your email app…';
+    });
+  })();
+
   </script>
 </body>
 </html>
