@@ -267,7 +267,13 @@
             .address, .tagline {
                 font-size: 1em;
             }
-      /* Hamburger button */
+      /* NAV CONTAINER */
+nav {
+    background: #222;
+    padding: 10px;
+}
+
+/* HAMBURGER BUTTON (hidden on desktop) */
 .menu-toggle {
     display: none;
     font-size: 28px;
@@ -275,32 +281,45 @@
     color: white;
 }
 
-/* Mobile styles */
+/* NAV LINKS - DESKTOP DEFAULT */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #FFD700;
+}
+
+/* MOBILE VERSION */
 @media (max-width: 768px) {}
 
     .menu-toggle {
         display: block;
-        text-align: left;   /* move hamburger to LEFT */
-        padding-left: 10px; /* spacing from edge */
-        padding-right: 0;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        text-align: left;   /* align menu text left too */
-        padding-top: 10px;
+        text-align: left;
         padding-left: 10px;
     }
 
-    .nav-links a {
-        padding: 10px;
-        display: block;
+    .nav-links {
+        display: none; /* hidden until hamburger clicked */
+        flex-direction: column;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 10px;
     }
 
     .nav-links.active {
-        display: flex;
+        display: flex; /* shown when hamburger clicked */
     }
+
+}
 
     </style>
 </head>
@@ -336,11 +355,7 @@
 
 <nav>
 
-    <div class="nav-header">
-        <div class="menu-toggle" onclick="toggleMenu()">
-            ☰
-        </div>
-    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
     <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
