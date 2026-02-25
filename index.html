@@ -38,11 +38,11 @@
       border-bottom: 3px solid #FFD700;
     }
 
-    /* NEW: title row with hamburger left, title centered */
+    /* Title row with hamburger left, title centered */
     .title-row {
       display: flex;
       align-items: center;
-      justify-content: center; /* keep title centered visually */
+      justify-content: center; /* keep title visually centered */
       gap: 12px;
       max-width: 1100px;
       margin: 0 auto 10px auto;
@@ -56,6 +56,7 @@
       text-align: center;
       flex: 0 0 auto;
     }
+    /* Hamburger button in header (left of title) */
     .menu-toggle--header {
       font-size: 28px;
       cursor: pointer;
@@ -66,6 +67,7 @@
       padding: 6px 10px;
       position: absolute;
       left: 0; /* sits to the left of the centered title */
+      display: none; /* hidden on desktop by default */
     }
 
     .header-bar {
@@ -80,11 +82,13 @@
     .header-left { text-align: left; }
     .header-center { text-align: center; }
     .header-right { text-align: right; }
+
     .address, .tagline {
       margin: 0;
       font-size: 1.1rem;
       color: #fff;
     }
+
     .facebook-button,
     .youtube-button {
       display: inline-block;
@@ -113,9 +117,6 @@
       gap: 16px;
     }
 
-    /* we no longer show the old nav-area toggle button */
-    .nav-inner .menu-toggle { display: none; }
-
     .nav-links {
       display: flex;
       justify-content: center;
@@ -142,18 +143,21 @@
       display: grid;
       place-items: center;
       overflow: hidden;
+
+      /* Background image */
       background-image: url("games.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
+    /* Overlay for contrast */
     .hero::before {
       content: "";
       position: absolute; inset: 0;
       background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));
     }
     .hero > .hero-content {
-      position: relative;
+      position: relative; /* above overlay */
       max-width: 900px;
       margin: 0 auto;
     }
@@ -240,6 +244,8 @@
     /* ==== Responsive (<= 768px) ==== */
     @media (max-width: 768px) {
       header .title-row h1 { font-size: 2rem; }
+
+      /* Show hamburger on mobile only */
       .menu-toggle--header { display: inline-block; }
 
       .header-bar {
@@ -255,13 +261,23 @@
 
       .nav-inner { align-items: flex-start; }
       .nav-links {
-        display: none;
+        display: none;              /* hidden until toggled */
         flex-direction: column;
         gap: 10px;
         width: 100%;
         padding-top: 10px;
       }
-      .nav-links.active { display: flex; }
+      .nav-links.active { display: flex; } /* shown when hamburger clicked */
+    }
+
+    /* Desktop: ensure links always visible when hamburger is hidden */
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex: 1;
+      }
     }
   </style>
 </head>
@@ -303,7 +319,7 @@
 
   <nav aria-label="Primary">
     <div class="nav-inner">
-      <!-- Old nav toggle removed; header button controls this menu -->
+      <!-- Header hamburger controls this menu -->
       <div class="nav-links" id="site-menu">
         <a href="#home">Home</a>
         <a href="#products">Games</a>
@@ -398,18 +414,27 @@
   </footer>
 
   <script>
-    // Header hamburger toggles the nav menu
+    // Header hamburger toggles the nav menu (mobile)
     const headerToggle = document.querySelector('.menu-toggle--header');
-    const navMenu     = document.getElementById('site-menu');
+    const navMenu = document.getElementById('site-menu');
 
     headerToggle?.addEventListener('click', () => {
       const isOpen = navMenu.classList.toggle('active');
       headerToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Close menu when a link is clicked (mobile)
+    // Close menu when a link is clicked (mobile nicety)
     navMenu?.addEventListener('click', (e) => {
-      if (e.target instanceof HTMLElement && e.target.tagName === 'A') {
+      const target = e.target;
+      if (target && target.tagName === 'A') {
+        navMenu.classList.remove('active');
+        headerToggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu if resizing to desktop (prevents stuck-open state)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu?.classList.contains('active')) {
         navMenu.classList.remove('active');
         headerToggle?.setAttribute('aria-expanded', 'false');
       }
@@ -424,6 +449,7 @@
       const email = document.getElementById('email');
       const message = document.getElementById('message');
       const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value);
+
       if (!name.value.trim() || !emailOk || !message.value.trim()) {
         e.preventDefault();
         alert('Please fill out all fields with a valid email.');
