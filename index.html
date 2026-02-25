@@ -267,7 +267,40 @@
             .address, .tagline {
                 font-size: 1em;
             }
-        }
+      /* Hamburger button */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {}
+
+    .menu-toggle {
+        display: block;
+        text-align: left;   /* move hamburger to LEFT */
+        padding-left: 10px; /* spacing from edge */
+        padding-right: 0;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        text-align: left;   /* align menu text left too */
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+    .nav-links a {
+        padding: 10px;
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
 
     </style>
 </head>
