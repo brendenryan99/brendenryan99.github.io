@@ -2,15 +2,201 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trading Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+        }
+
+        header {
+            background: #000;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.2em;
+            color: #FFD700;
+        }
+
+        nav {
+            background: #222;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #2b2b2b, #6e6e6e);
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+        }
+
+        .section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .product-card h3 {
+            margin-top: 0;
+            color: #ff00cc;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: linear-gradient(45deg, #8c6a00, #d4af37, #ffd700);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: #8c6a00;
+        }
+
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 3px solid #ff00cc;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #ff00cc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff66dd;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to A1 Trading in Independence, MO</h1>
-    <h2>    KC Metros #1 retro video game store!</h2>
-<hr>
-    <p> CAll it whatever you want but this is vibe coding 2</p>
 
-    <img src="image.jpg"> 
+<header>
+    <h1>A1 Trading</h1>
+    <p>Your #1 Source for Classic Video Games</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#products">Games</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero" id="home">
+    <h2>Dive into your Nostalgia</h2>
+    <p>NES • SNES • Sega • PlayStation • Nintendo </p>
+    <a href="#products" class="btn">Shop Now</a>
+</section>
+
+<section class="section" id="products">
+    <h2>Featured Games</h2>
+    <div class="products">
+        <div class="product-card">
+            <h3>Super Mario Bros</h3>
+            <p>Nintendo Entertainment System</p>
+            <p>$29.99</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <h3>Sonic the Hedgehog</h3>
+            <p>Sega Genesis</p>
+            <p>$24.99</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <h3>The Legend of Zelda</h3>
+            <p>Super Nintendo</p>
+            <p>$39.99</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <h3>Street Fighter II</h3>
+            <p>Arcade Classic</p>
+            <p>$34.99</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <h2>About Us</h2>
+    <p>
+        A1 Trading is dedicated to preserving the classics. 
+        We buy, sell, and trade authentic retro video games and consoles.
+        Every cartridge and disc is tested for quality.
+    </p>
+</section>
+
+<section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2026 Retro Rewind Games | All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
