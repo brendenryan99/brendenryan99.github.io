@@ -137,37 +137,56 @@
         button:hover {
             background: #FFD700;
         }
-        .facebook-button {
-  background-color: #1877F2;
-  color: white;
-  padding: 12px 20px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  display: inline-block;
+        .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
 }
 
-.facebook-button:hover {
-  background-color: #145dbf;
+/* left section */
+.header-left {
+    flex: 1;
+    text-align: left;
 }
 
-  .youtube-button {
-  background-color: #FF0000;
-  color: white;
-  padding: 10px 16px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  margin-left: 50px; /* moves button 50px to the right */
+/* center section */
+.header-center {
+    flex: 1;
+    text-align: center;
 }
-.youtube-button:hover {
-  background-color: #cc0000;
+
+/* right section */
+.header-right {
+    flex: 1;
+    text-align: right;
+}
+
+.address, .tagline {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Facebook button */
+.facebook-button {
+    background-color: #1877F2;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* YouTube button */
+.youtube-button {
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
     </style>
@@ -176,17 +195,30 @@
 
 <header>
     <h1>A1 Trading</h1>
-   <div class="header-row"> 
-    <h2 class="address"> 1003 E 23rd St. S Suite A Independence, MO, 
-        United States, Missouri 64055</h2>
-    <h2 class="tagline"> BUY - SELL - TRADE</h2>
-     <a href="https://www.facebook.com/ItsyourboyA1trading/" target="_blank" class="facebook-button">
-    Facebook
-     </a>
-     <a href="https://www.youtube.com/@Retrodirt117/videos" target="_blank" class="youtube-button">
-  YouTube
-</a>
-   </div>
+
+    <div class="header-bar">
+
+        <div class="header-left">
+            <h2 class="address">
+                1003 E 23rd St. S Suite A Independence, MO, United States, Missouri 64055
+            </h2>
+        </div>
+
+        <div class="header-center">
+            <h2 class="tagline">BUY - SELL - TRADE</h2>
+        </div>
+
+        <div class="header-right">
+            <a href="https://www.facebook.com/ItsyourboyA1trading/" target="_blank" class="facebook-button">
+                Facebook
+            </a>
+
+            <a href="https://www.youtube.com/@Retrodirt117/videos" target="_blank" class="youtube-button">
+                YouTube
+            </a>
+        </div>
+
+    </div>
 </header>
 
 <nav>
