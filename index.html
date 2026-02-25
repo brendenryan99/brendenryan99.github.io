@@ -385,30 +385,32 @@
     </section>
 
     <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <h2 id="contact-title">Contact Us</h2>
-        <h2>Email or Call 816-844-2716</h2>
-        <form class="contact-form" action="#" method="post" novalidate>
-          <div class="field">
-            <label for="name">Your Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required />
-          </div>
+  <div class="container">
+    <h2 id="contact-title">Contact Us</h2>
+    <h2>Email or Call 816-844-2716</h2>
 
-          <div class="field">
-            <label for="email">Your Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-          </div>
-
-          <div class="field">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-
-          <button type="submit">Send Message</button>
-        </form>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="field">
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
       </div>
-    </section>
-  </main>
+
+      <div class="field">
+        <label for="email">Your Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <!-- IMPORTANT: type="button" so it doesn't try to submit the form -->
+      <button type="button" id="mailtoBtn">Send Message</button>
+      <p id="form-status" class="muted" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
 
   <footer role="contentinfo">
     <p>&copy; <span id="year"></span> A1 Trading | All Rights Reserved</p>
@@ -456,6 +458,51 @@
         alert('Please fill out all fields with a valid email.');
       }
     });
+    
+    
+(function () {
+    const btn = document.getElementById('mailtoBtn');
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('form-status');
+
+    // CHANGE THIS to your destination email
+    const TO_EMAIL = 'youremail@example.com';
+    const SUBJECT = 'A1 Trading website contact';
+
+    function encode(v) { return encodeURIComponent(v || ''); }
+
+    btn?.addEventListener('click', () => {
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      // Simple client-side validation
+      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      if (!name || !emailOk || !message) {
+        status.textContent = 'Please enter your name, a valid email, and a message.';
+        return;
+      }
+
+      // Compose the email body with line breaks
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        '',
+        'Message:',
+        message
+      ].join('\n');
+
+      const mailtoUrl = `mailto:${encode(TO_EMAIL)}?subject=${encode(SUBJECT)}&body=${encode(body)}`;
+
+      // Open the user's email client
+      window.location.href = mailtoUrl;
+
+      // Optional: UI feedback
+      status.textContent = 'Opening your email app…';
+    });
+  })();
+
+
   </script>
 </body>
 </html>
