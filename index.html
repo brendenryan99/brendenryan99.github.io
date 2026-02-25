@@ -188,6 +188,86 @@
     border-radius: 5px;
     margin-left: 10px;
 }
+.header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            gap: 10px;
+        }
+
+        .header-left {
+            flex: 1;
+            text-align: left;
+        }
+
+        .header-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-right {
+            flex: 1;
+            text-align: right;
+        }
+
+        .address, .tagline {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .facebook-button,
+        .youtube-button {
+            display: inline-block;
+            padding: 10px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .facebook-button {
+            background-color: #1877F2;
+            color: white;
+        }
+
+        .youtube-button {
+            background-color: #FF0000;
+            color: white;
+        }
+
+        @media (max-width: 768px) {}
+
+            .header-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-left,
+            .header-center,
+            .header-right {
+                text-align: center;
+                flex: unset;
+                width: 100%;
+            }
+
+            .header-right {
+                margin-top: 10px;
+            }
+
+            .facebook-button,
+            .youtube-button {
+                margin: 5px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .address, .tagline {
+                font-size: 1em;
+            }
+        }
 
     </style>
 </head>
