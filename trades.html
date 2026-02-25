@@ -561,20 +561,49 @@
       </div>
     </section>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <h2 class="section-title" id="contact-title">Contact</h2>
-        <p>
-          Email us at
-          <a href="mailto:brendenryan99@gmail.com?subject=A1%20Trading%20Website%20Inquiry"
-             aria-label="Email A1 Trading about a website inquiry">
-            brendenryan99@gmail.com
-          </a>
-          or call <strong>816‑844‑2716</strong>. Visit us at the Independence, MO location above.
-        </p>
+      <!-- Quote form (working mailto version) -->
+<section class="section" id="quote" aria-labelledby="quote-title">
+  <div class="container">
+    <h2 class="section-title" id="quote-title">Get a Trade‑In Quote</h2>
+    <p class="note">Send us your list—titles, platform, condition (cart only / CIB), and any accessories. We’ll reply with a quote range.</p>
+
+    <form class="quote-form" id="quoteForm" novalidate>
+      <div class="field">
+        <label for="q-name">Your Name</label>
+        <input id="q-name" name="name" type="text" autocomplete="name" required />
       </div>
-    </section>
-  </main>
+
+      <div class="field">
+        <label for="q-email">Your Email</label>
+        <input id="q-email" name="email" type="email" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="q-platform">Main Platform (optional)</label>
+        <select id="q-platform" name="platform">
+          <option value="">Mixed / Not sure</option>
+          <option>NES</option>
+          <option>SNES</option>
+          <option>Genesis</option>
+          <option>N64</option>
+          <option>PS1</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="q-list">Your List</label>
+        <textarea id="q-list" name="list" rows="6" placeholder="Example:
+- Super Mario Bros 3 (NES) – cart only
+- Chrono Trigger (SNES) – CIB
+- Final Fantasy VII (PS1) – complete" required></textarea>
+      </div>
+
+      <!-- IMPORTANT: type is button so we control the click -->
+      <button type="button" id="mailtoQuoteBtn" class="btn">Send for Quote</button>
+      <p id="quote-status" class="muted" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
 
   <footer role="contentinfo">
     <p>&copy; <span id="year"></span> A1 Trading | All Rights Reserved</p>
@@ -631,3 +660,47 @@
         row.style.display = (matchesText && matchesPlat) ? '' : 'none';
       });
     }
+<script>
+  (function () {
+    const btn = document.getElementById('mailtoQuoteBtn');
+    const statusEl = document.getElementById('quote-status');
+
+    // Change this to the address you want to receive quotes at
+    const TO_EMAIL = 'brendenryan99@gmail.com';
+    const SUBJECT = 'A1 Trading — Trade-In Quote Request';
+
+    function enc(v) { return encodeURIComponent(v || ''); }
+
+    btn?.addEventListener('click', () => {
+      const name = (document.getElementById('q-name')?.value || '').trim();
+      const email = (document.getElementById('q-email')?.value || '').trim();
+      const platform = (document.getElementById('q-platform')?.value || '').trim();
+      const list = (document.getElementById('q-list')?.value || '').trim();
+
+      // Basic validation
+      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      if (!name || !emailOk || !list) {
+        if (statusEl) statusEl.textContent = 'Please include your name, a valid email, and your item list.';
+        return;
+      }
+
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        platform ? `Main Platform: ${platform}` : '',
+        '',
+        'Items:',
+        list
+      ].filter(Boolean).join('\n');
+
+      // IMPORTANT: use '&' (not '&amp;') here since this is JavaScript, not HTML.
+      const mailtoUrl = `mailto:${enc(TO_EMAIL)}?subject=${enc(SUBJECT)}&body=${enc(body)}`;
+
+      // Open default mail app
+      window.location.href = mailtoUrl;
+
+      // Optional UI feedback
+      if (statusEl) statusEl.textContent = 'Opening your email app…';
+    });
+  })();
+</script>
