@@ -61,14 +61,15 @@
          4px  4px 0 #000;
         }
 
-        .hero p {
-            font-size: 1em;
-                text-shadow:
-        -2px -2px 0 #000,
-         2px -2px 0 #000,
-        -2px  2px 0 #000,
-         2px  2px 0 #000;
-        }
+    .hero p {
+    font-size: 1em;
+    background-color: black;      /* black rectangle behind text */
+    color: white;                 /* text color */
+    padding: 8px 16px;            /* space inside rectangle */
+    display: inline-block;        /* shrink rectangle to fit text */
+    border-radius: 4px;           /* optional: slightly rounded corners */
+    text-shadow: none;            /* remove shadow if you want clean rectangle */
+}
 
         .section {
             padding: 40px 20px;
