@@ -498,12 +498,13 @@
       </div>
     </section>
 
-    <!-- Quote form -->
+    <!-- Quote form (Option 1: button opens mailto with form data) -->
     <section class="section" id="quote" aria-labelledby="quote-title">
       <div class="container">
         <h2 class="section-title" id="quote-title">Get a Trade‑In Quote</h2>
         <p class="note">Send us your list—titles, platform, condition (cart only / CIB), and any accessories. We’ll reply with a quote range.</p>
-        <form class="quote-form" action="#" method="post" novalidate>
+
+        <form class="quote-form" id="quoteForm" novalidate>
           <div class="field">
             <label for="q-name">Your Name</label>
             <input id="q-name" name="name" type="text" autocomplete="name" required />
@@ -534,7 +535,9 @@
 - Final Fantasy VII (PS1) – complete" required></textarea>
           </div>
 
-          <button type="submit">Send for Quote</button>
+          <!-- IMPORTANT: type="button" so we build mailto instead of POST -->
+          <button type="button" id="mailtoQuoteBtn" class="btn">Send for Quote</button>
+          <p id="quote-status" class="muted" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -558,21 +561,19 @@
       </div>
     </section>
 
-    
-<section class="section" id="contact" aria-labelledby="contact-title">
-  <div class="container">
-    <h2 class="section-title" id="contact-title">Contact</h2>
-    <p>
-      Email us at
-      <a href="mailto:brendenryan99@gmail.com?subject=A1%20Trading%20Website%20Inquiry"
-         aria-label="Email A1 Trading about a website inquiry">
-        brendenryan99@gmail.com
-      </a>
-      or call <strong>816‑844‑2716</strong>. Visit us at the Independence, MO location above.
-    </p>
-  </div>
-</section>
-
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section-title" id="contact-title">Contact</h2>
+        <p>
+          Email us at
+          <a href="mailto:brendenryan99@gmail.com?subject=A1%20Trading%20Website%20Inquiry"
+             aria-label="Email A1 Trading about a website inquiry">
+            brendenryan99@gmail.com
+          </a>
+          or call <strong>816‑844‑2716</strong>. Visit us at the Independence, MO location above.
+        </p>
+      </div>
+    </section>
   </main>
 
   <footer role="contentinfo">
@@ -606,12 +607,12 @@
       }
     });
 
-    // Footer year + last updated (from file build time)
+    // Footer year + last updated
     document.getElementById('year').textContent = new Date().getFullYear();
-    // For 'Last updated', you can hardcode a date or use today's date:
     const today = new Date();
     const fmt = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('last-updated').textContent = fmt;
+    const lastUpdatedEl = document.getElementById('last-updated');
+    if (lastUpdatedEl) lastUpdatedEl.textContent = fmt;
 
     // Simple filter: search title + platform dropdown
     const searchInput = document.getElementById('search');
@@ -619,8 +620,8 @@
     const rows = Array.from(document.querySelectorAll('#values-body tr'));
 
     function applyFilter() {
-      const q = (searchInput.value || '').toLowerCase().trim();
-      const pf = (platformFilter.value || '').toLowerCase().trim();
+      const q = (searchInput?.value || '').toLowerCase().trim();
+      const pf = (platformFilter?.value || '').toLowerCase().trim();
 
       rows.forEach(row => {
         const title = row.cells[0].textContent.toLowerCase();
@@ -630,64 +631,3 @@
         row.style.display = (matchesText && matchesPlat) ? '' : 'none';
       });
     }
-    searchInput?.addEventListener('input', applyFilter);
-    platformFilter?.addEventListener('change', applyFilter);
-
-    // Basic client-side form validation for quote form
-    document.querySelector('form.quote-form')?.addEventListener('submit', (e) => {
-      const name = document.getElementById('q-name');
-      const email = document.getElementById('q-email');
-      const list = document.getElementById('q-list');
-      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value);
-
-      if (!name.value.trim() || !emailOk || !list.value.trim()) {
-        e.preventDefault();
-        alert('Please include your name, a valid email, and a list of items.');
-      }
-    });
-
-(function () {
-    const btn = document.getElementById('mailtoBtn');
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('form-status');
-
-    // CHANGE THIS to your destination email
-    const TO_EMAIL = 'brendenryan99@gmail.com';
-    const SUBJECT = 'A1 Trading website contact';
-
-    function encode(v) { return encodeURIComponent(v || ''); }
-
-    btn?.addEventListener('click', () => {
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
-
-      // Simple client-side validation
-      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-      if (!name || !emailOk || !message) {
-        status.textContent = 'Please enter your name, a valid email, and a message.';
-        return;
-      }
-
-      // Compose the email body with line breaks
-      const body = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        '',
-        'Message:',
-        message
-      ].join('\n');
-
-      const mailtoUrl = `mailto:${encode(TO_EMAIL)}?subject=${encode(SUBJECT)}&body=${encode(body)}`;
-
-      // Open the user's email client
-      window.location.href = mailtoUrl;
-
-      // Optional: UI feedback
-      status.textContent = 'Opening your email app…';
-    });
-  })();
-
-  </script>
-</body>
-</html>
