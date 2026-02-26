@@ -213,6 +213,11 @@
     .product-card h3 { margin-top: 0; color: #ffee00fd; }
     .product-card p { margin: 6px 0; color: #ddd; }
 
+.product-card:hover {
+        border-color: red;
+        transform: scale(1.02); /* Slight zoom effect */
+        cursor: pointer;
+
     input, textarea {
       width: 100%;
       padding: 12px 14px;
@@ -347,7 +352,7 @@
         <div class="products">
           <article class="product-card" aria-labelledby="p1-title">
             <h3 id="p1-title">The TerribleGameTour</h3>
-            <p>Sat. 2/28</p>
+            <p>Sat. 2/28</p><br>
             <img src="terriblegametour.jpg" width="250" height="200">
           </article>
 
@@ -364,7 +369,7 @@
           </article>
 
           <article class="product-card" aria-labelledby="p4-title">
-            <h3 id="p4-title">You Like BOGO? ;]</h3>
+            <h3 id="p4-title">You Like BOGO? ;]</h3><br>
             <img src="bogo.png" width="250" height="200">
           </article>
         </div>
