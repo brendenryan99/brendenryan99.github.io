@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A1 Trading – Trade‑In Values</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A1 Trading trade-in values for retro games and consoles. Get cash or store credit for NES, SNES, Sega, PlayStation, Nintendo & more. 1003 E 23rd St. S Suite A, Independence, MO." />
+
+  <style>
+    /* ==== Base / Reset ==== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: #fff; text-decoration: none; }
+    a:hover { color: #FFD700; }
+    :focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      position: static; width: auto; height: auto; padding: 8px 12px;
+      background: #000; color: #fff; border-radius: 8px;
+    }
+
+    /* ==== Header ==== */
+    header {
+      background: #000;
+      padding: 20px 16px;
+      border-bottom: 3px solid #FFD700;
+    }
+
+    /* Title row with hamburger left, title centered */
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto 10px auto;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      color: #FFD700;
+      letter-spacing: 0.5px;
+      text-align: center;
+      flex: 0 0 auto;
+    }
+    /* Hamburger button in header (left of title) - hidden on desktop */
+    .menu-toggle--header {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      background: transparent;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 6px 10px;
+      position: absolute;
+      left: 0;
+      display: none; /* desktop hidden */
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-left, .header-center, .header-right { flex: 1; }
+    .header-left { text-align: left; }
+    .header-center { text-align: center; }
+    .header-right { text-align: right; }
+
+    .address, .tagline {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .facebook-button,
+    .youtube-button {
+      display: inline-block;
+      padding: 10px 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+    .facebook-button { background-color: #1877F2; color: #fff; }
+    .youtube-button  { background-color: #FF0000; color: #fff; }
+
+    /* ==== Nav ==== */
+    nav {
+      background: #222;
+      padding: 10px 16px;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex: 1;
+    }
+    .nav-links a {
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+    .nav-links a:hover {
+      color: #111;
+      background: #FFD700;
+    }
+
+    /* ==== Hero ==== */
+    .hero {
+      position: relative;
+      min-height: 40vh;
+      padding: 60px 20px;
+      text-align: center;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background-image: url("images/games.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));
+    }
+    .hero > .hero-content {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw + 1rem, 2.6rem);
+      color: #FFD700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      display: inline-block;
+      padding: 8px 14px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: linear-gradient(45deg, #8c6a00, #d4af37, #ffd700);
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+    .btn:hover { background: #FFD700; }
+
+    /* ==== Content sections ==== */
+    .section { padding: 40px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h2.section-title { margin-top: 0; font-size: 2rem; color: #FFD700; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0 8px;
+    }
+    .toolbar input[type="search"],
+    .toolbar select {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      width: 100%;
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background: #1a1a1a;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+    thead th {
+      background: #222;
+      color: #FFD700;
+      text-align: left;
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid #333;
+      z-index: 1;
+    }
+    tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #2a2a2a;
+      color: #eee;
+    }
+    tbody tr:hover td {
+      background: #181818;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      border: 1px solid #444;
+      background: #111;
+      color: #FFD700;
+    }
+
+    .note {
+      margin-top: 12px;
+      color: #ddd;
+      font-size: 0.95rem;
+    }
+
+    .callout {
+      padding: 12px 14px;
+      border: 1px solid #333;
+      background: #161616;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+    .callout strong { color: #FFD700; }
+
+    /* Quote form */
+    form.quote-form {
+      display: grid;
+      gap: 12px;
+      background: #1a1a1a;
+      padding: 18px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      margin-top: 14px;
+    }
+    .field { display: grid; gap: 6px; }
+    label { font-weight: bold; }
+    input[type="text"], input[type="email"], textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+    }
+    button {
+      padding: 10px 20px;
+      background: #ffee00fd;
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      width: fit-content;
+    }
+    button:hover { background: #FFD700; }
+
+    /* Footer */
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-top: 3px solid #ffee00fd;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header .title-row h1 { font-size: 2rem; }
+      .menu-toggle--header { display: inline-block; }
+
+      .header-bar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header-left, .header-center, .header-right {
+        text-align: center;
+        width: 100%;
+      }
+
+      .nav-inner { align-items: flex-start; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding-top: 10px;
+      }
+      .nav-links.active { display: flex; }
+
+      .toolbar {
+        grid-template-columns: 1fr; /* stack search/filter */
+      }
+    }
+
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Header -->
+  <header role="banner">
+    <div class="title-row">
+      <button class="menu-toggle--header"
+              aria-controls="site-menu" aria-expanded="false" aria-label="Toggle menu">
+        ☰
+      </button>
+      <h1>A1 Trading</h1>
+    </div>
+
+    <div class="header-bar">
+      <div class="header-left">
+        <p class="address">
+          1003 E 23rd St. S Suite A, Independence, MO, United States
+        </p>
+      </div>
+
+      <div class="header-center">
+        <p class="tagline">BUY — SELL — TRADE</p>
+      </div>
+
+      <div class="header-right">
+        <a class="facebook-button" href="https://www.facebook.com/ItsyourboyA1trading/"
+           target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page">
+          Facebook
+        </a>
+        <a class="youtube-button" href="https://www.youtube.com/@Retrodirt117/videos"
+           target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel">
+          YouTube
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav aria-label="Primary">
+    <div class="nav-inner">
+      <div class="nav-links" id="site-menu">
+        <a href="index.html">Home</a>
+        <a href="inventory.html" aria-current="page">Inventory</a>
+        <a href="#quote">Get a Quote</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-label="Trade-In Hero">
+      <div class="hero-content">
+        <h2>Trade‑In Values for Retro Games & Consoles</h2>
+        <p>Get cash or store credit for NES • SNES • Sega • PlayStation • Nintendo & more.</p>
+        <p><a href="#values" class="btn">See Values</a></p>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section" id="values" aria-labelledby="values-title">
+      <div class="container">
+        <h2 class="section-title" id="values-title">Current Trade‑In Values</h2>
+        <p class="note">
+          <strong>Disclaimer:</strong> Prices are estimates and may change based on condition, completeness (case/manual),
+          region, and current demand. Final values are confirmed in-store after testing. Store credit may be higher than cash.
+          <br />Last updated: <span id="last-updated"></span>
+        </p>
+
+        <div class="toolbar" role="region" aria-label="Filter tools">
+          <input id="search" type="search" placeholder="Search title (e.g., Zelda, Mario, Sonic)" aria-label="Search title" />
+          <select id="platform" aria-label="Filter by platform">
+            <option value="">All Platforms</option>
+            <option>NES</option>
+            <option>SNES</option>
+            <option>Genesis</option>
+            <option>N64</option>
+            <option>PS1</option>
+          </select>
+        </div>
+
+        <div class="table-wrap" role="region" aria-label="Trade-in values table">
+          <table aria-describedby="values-title">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Platform</th>
+                <th scope="col">Condition</th>
+                <th scope="col">Cash</th>
+                <th scope="col">Store Credit</th>
+              </tr>
+            </thead>
+            <tbody id="values-body">
+              <!-- Sample rows; add your own as needed -->
+              <tr>
+                <td>The Legend of Zelda</td>
+                <td><span class="badge">NES</span></td>
+                <td>Cart only</td>
+                <td>$22</td>
+                <td>$30</td>
+              </tr>
+              <tr>
+                <td>Super Mario Bros 3</td>
+                <td><span class="badge">NES</span></td>
+                <td>Cart only</td>
+                <td>$12</td>
+                <td>$18</td>
+              </tr>
+              <tr>
+                <td>Super Metroid</td>
+                <td><span class="badge">SNES</span></td>
+                <td>Cart only</td>
+                <td>$48</td>
+                <td>$65</td>
+              </tr>
+              <tr>
+                <td>Chrono Trigger</td>
+                <td><span class="badge">SNES</span></td>
+                <td>Complete in box</td>
+                <td>$220</td>
+                <td>$280</td>
+              </tr>
+              <tr>
+                <td>Sonic the Hedgehog</td>
+                <td><span class="badge">Genesis</span></td>
+                <td>Cart + case</td>
+                <td>$10</td>
+                <td>$14</td>
+              </tr>
+              <tr>
+                <td>GoldenEye 007</td>
+                <td><span class="badge">N64</span></td>
+                <td>Cart only</td>
+                <td>$18</td>
+                <td>$25</td>
+              </tr>
+              <tr>
+                <td>Final Fantasy VII</td>
+                <td><span class="badge">PS1</span></td>
+                <td>Complete</td>
+                <td>$30</td>
+                <td>$40</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout" role="note">
+          <strong>Condition notes:</strong> Values assume authentic items. Reproductions, heavy label damage, missing discs/manuals,
+          resurfacing needs, or non‑working items may receive lower offers. Consoles include one official controller and OEM power/video if present.
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote form (single, working mailto version) -->
+    <section class="section" id="quote" aria-labelledby="quote-title">
+      <div class="container">
+        <h2 class="section-title" id="quote-title">Get a Trade‑In Quote</h2>
+        <p class="note">Send us your list—titles, platform, condition (cart only / CIB), and any accessories. We’ll reply with a quote range.</p>
+
+        <form class="quote-form" id="quoteForm" novalidate>
+          <div class="field">
+            <label for="q-name">Your Name</label>
+            <input id="q-name" name="name" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label for="q-email">Your Email</label>
+            <input id="q-email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="q-platform">Main Platform (optional)</label>
+            <select id="q-platform" name="platform">
+              <option value="">Mixed / Not sure</option>
+              <option>NES</option>
+              <option>SNES</option>
+              <option>Genesis</option>
+              <option>N64</option>
+              <option>PS1</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="q-list">Your List</label>
+            <textarea id="q-list" name="list" rows="6" placeholder="Example:
+- Super Mario Bros 3 (NES) – cart only
+- Chrono Trigger (SNES) – CIB
+- Final Fantasy VII (PS1) – complete" required></textarea>
+          </div>
+
+          <!-- IMPORTANT: type="button" so we build mailto instead of POST -->
+          <button type="button" id="mailtoQuoteBtn" class="btn">Send for Quote</button>
+          <p id="quote-status" class="muted" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 class="section-title" id="faq-title">FAQ</h2>
+        <details>
+          <summary>Do you pay more for store credit?</summary>
+          <p>Yes, store credit typically receives a higher value than cash. The table shows both.</p>
+        </details>
+        <details>
+          <summary>Do you test items?</summary>
+          <p>Yes. Final values are confirmed after testing in-store.</p>
+        </details>
+        <details>
+          <summary>Do you accept accessories and consoles?</summary>
+          <p>Yes—controllers, memory cards, AV/power cables, and consoles. Values vary by completeness and demand.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section-title" id="contact-title">Contact</h2>
+        <p>
+          Email us at
+          <a href="mailto:brendenryan99@gmail.com?subject=A1%20Trading%20Website%20Inquiry"
+             aria-label="Email A1 Trading about a website inquiry">
+            brendenryan99@gmail.com
+          </a>
+          or call <strong>816‑844‑2716</strong>. Visit us at the Independence, MO location above.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; <span id="year"></span> A1 Trading | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Header hamburger toggles the nav menu (mobile)
+    const headerToggle = document.querySelector('.menu-toggle--header');
+    const navMenu = document.getElementById('site-menu');
+
+    headerToggle?.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('active');
+      headerToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close menu when a link is clicked (mobile nicety)
+    navMenu?.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.tagName === 'A') {
+        navMenu.classList.remove('active');
+        headerToggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu if resizing to desktop (prevents stuck-open state)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu?.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        headerToggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Footer year + last updated
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const today = new Date();
+    const fmt = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    const lastUpdatedEl = document.getElementById('last-updated');
+    if (lastUpdatedEl) lastUpdatedEl.textContent = fmt;
+
+    // Simple filter: search title + platform dropdown
+    const searchInput = document.getElementById('search');
+    const platformFilter = document.getElementById('platform');
+    const rows = Array.from(document.querySelectorAll('#values-body tr'));
+
+    function applyFilter() {
+      const q = (searchInput?.value || '').toLowerCase().trim();
+      const pf = (platformFilter?.value || '').toLowerCase().trim();
+
+      rows.forEach(row => {
+        const title = row.cells[0].textContent.toLowerCase();
+        const platform = row.cells[1].textContent.toLowerCase();
+        const matchesText = !q || title.includes(q);
+        const matchesPlat = !pf || platform.includes(pf);
+        row.style.display = (matchesText && matchesPlat) ? '' : 'none';
+      });
+    }
+    searchInput?.addEventListener('input', applyFilter);
+    platformFilter?.addEventListener('change', applyFilter);
+
+    // === Mailto builder for "Send for Quote" (working) ===
+    (function () {
+      const btn = document.getElementById('mailtoQuoteBtn');
+      const statusEl = document.getElementById('quote-status');
+
+      // Change this to the address you want to receive quotes at
+      const TO_EMAIL = 'brendenryan99@gmail.com';
+      const SUBJECT = 'A1 Trading — Trade-In Quote Request';
+
+      function enc(v) { return encodeURIComponent(v || ''); }
+
+      btn?.addEventListener('click', () => {
+        const name = (document.getElementById('q-name')?.value || '').trim();
+        const email = (document.getElementById('q-email')?.value || '').trim();
+        const platform = (document.getElementById('q-platform')?.value || '').trim();
+        const list = (document.getElementById('q-list')?.value || '').trim();
+
+        // Basic validation
+        const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+        if (!name || !emailOk || !list) {
+          if (statusEl) statusEl.textContent = 'Please include your name, a valid email, and your item list.';
+          return;
+        }
+
+        const body = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          platform ? `Main Platform: ${platform}` : '',
+          '',
+          'Items:',
+          list
+        ].filter(Boolean).join('\n');
+
+        const mailtoUrl = `mailto:${enc(TO_EMAIL)}?subject=${enc(SUBJECT)}&body=${enc(body)}`;
+
+        // Open default mail app
+        window.location.href = mailtoUrl;
+
+        // Optional UI feedback
+        if (statusEl) statusEl.textContent = 'Opening your email app…';
+      });
+    })();
+  </script>
+</body>
+</html>
