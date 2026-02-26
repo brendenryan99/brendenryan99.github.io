@@ -541,6 +541,9 @@
     });
   })();
 
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTyL2lkqNY2SF9NPQSnYu0wPXhJQ_sPE3QIcdtUOYtrNaf2tBbnY7wq8-kjQDoAJ5aEcQDfkLWSpgHH/pub?gid=0&single=true&output=csv") .then(r => r.text()) .then(csv => { const rows = csv.split("\n").map(r => r.split(",")); console.log(rows); });
+
+
 
   </script>
 </body>
