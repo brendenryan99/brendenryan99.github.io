@@ -347,204 +347,198 @@
       </div>
     </section>
 
-    <section class="section" id="products" aria-labelledby="products-title">
-      <div class="container">
-        <h2 id="products-title">Inventory Updated Weekly</h2>
-        <div class="products">
-          <article class="product-card" aria-labelledby="p1-title">
-            <a href=INVPlaystation.html>
-             <h3 id="p1-title">PLAYSTATION</h3>
-            <img src="terriblegametour.jpg" width="250" height="200">
-           </a>
-          </article>
-      
-          <article class="product-card" aria-labelledby="p2-title">
-            <a href=https://www.facebook.com/ItsyourboyA1trading> 
-             <h3 id="p2-title">XBOX</h3>
-               <img src="halo3L.jpg" width="250" height="200">
-            </a>
-          </article>
-        
-          <article class="product-card" aria-labelledby="p3-title">
-           <a href=https://www.facebook.com/reel/864778066322695>
-            <h3 id="p3-title">NINTENDO</h3>
-             <p>Trading with us and other in store!</p>
-              <img src="tradenswap.png" width="250" height="200">
-             </a> 
-          </article>
-        
-          <article class="product-card" aria-labelledby="p4-title">
-            <a href="https://www.youtube.com/watch?v=Aq5WXmQQooo">
-            <h3 id="p4-title">SEGA</h3><br>
-            <img src="bogo.png" width="250" height="200">
-            </a>
-          </article>
+    <section class="section" id="products">
+<div class="container">
 
-           <article class="product-card" aria-labelledby="p4-title">
-            <a href="https://www.youtube.com/watch?v=Aq5WXmQQooo">
-            <h3 id="p5-title">ACCESSORIES</h3><br>
-            <img src="bogo.png" width="250" height="200">
-            </a>
-          </article>
+<h2>Weekly Playstation Inventory</h2>
 
-          <article class="product-card" aria-labelledby="p4-title">
-            <a href="https://www.youtube.com/watch?v=Aq5WXmQQooo">
-            <h3 id="p6-title">ACCESSORIES2</h3><br>
-            <img src="bogo.png" width="250" height="200">
-            </a>
-          </article>
+<div class="products" id="products-container">
 
-          <article class="product-card" aria-labelledby="p4-title">
-            <a href="https://www.youtube.com/watch?v=Aq5WXmQQooo">
-            <h3 id="p7-title">ACCESSORIES3</h3><br>
-            <img src="bogo.png" width="250" height="200">
-            </a>
-          </article>
+<!-- Cards load automatically from Google Sheets -->
 
-          <article class="product-card" aria-labelledby="p4-title">
-            <a href="https://www.youtube.com/watch?v=Aq5WXmQQooo">
-            <h3 id="p8-title">ACCESSORIES69</h3><br>
-            <img src="bogo.png" width="250" height="200">
-            </a>
-          </article>
-        
-      </div>
-    </div>
-  </section>
+</div>
 
-<section class="section" id="about" aria-labelledby="about-title">
-      <div class="container">
-        <h2 id="about-title">About Us</h2>
-        <p>
-          A1 Trading is dedicated to preserving the classics.
-          We buy, sell, and trade authentic retro video games and consoles.
-          Every cartridge and disc is tested for quality.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="contact" aria-labelledby="contact-title">
-  <div class="container">
-    <h2 id="contact-title">Contact Us</h2>
-    <h2>Email or Call 816-844-2716</h2>
-
-    <form class="contact-form" id="contactForm" novalidate>
-      <div class="field">
-        <label for="name">Your Name</label>
-        <input id="name" name="name" type="text" autocomplete="name" required />
-      </div>
-
-      <div class="field">
-        <label for="email">Your Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required />
-      </div>
-
-      <div class="field">
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-      </div>
-
-      <!-- IMPORTANT: type="button" so it doesn't try to submit the form -->
-      <button type="button" id="mailtoBtn">Send Message</button>
-      <p id="form-status" class="muted" aria-live="polite"></p>
-    </form>
-  </div>
+</div>
 </section>
 
-  <footer role="contentinfo">
-    <p>&copy; <span id="year"></span> A1 Trading | All Rights Reserved</p>
-  </footer>
 
-  <script>
-    // Header hamburger toggles the nav menu (mobile)
-    const headerToggle = document.querySelector('.menu-toggle--header');
-    const navMenu = document.getElementById('site-menu');
+<section class="section" id="contact">
+<div class="container">
 
-    headerToggle?.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('active');
-      headerToggle.setAttribute('aria-expanded', String(isOpen));
+<h2>Contact Us</h2>
+<h3>Email or Call 816-844-2716</h3>
+
+<form class="contact-form" id="contactForm">
+
+<div class="field">
+<label>Your Name</label>
+<input id="name" name="name" required>
+</div>
+
+<div class="field">
+<label>Your Email</label>
+<input id="email" name="email" required>
+</div>
+
+<div class="field">
+<label>Message</label>
+<textarea id="message" name="message" required></textarea>
+</div>
+
+<button type="button" id="mailtoBtn">Send Message</button>
+
+<p id="form-status"></p>
+
+</form>
+
+</div>
+</section>
+
+
+<footer>
+<p>&copy; <span id="year"></span> A1 Trading</p>
+</footer>
+
+
+<script>
+
+/* =========================
+   Google Sheets CSV Loader
+========================= */
+
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTyL2lkqNY2SF9NPQSnYu0wPXhJQ_sPE3QIcdtUOYtrNaf2tBbnY7wq8-kjQDoAJ5aEcQDfkLWSpgHH/pub?gid=0&single=true&output=csv";
+
+
+function parseCSV(text)
+{
+  const lines = text.trim().split("\n");
+
+  const headers = lines[0].split(",");
+
+  return lines.slice(1).map(line =>
+  {
+    const values = line.split(",");
+
+    let obj = {};
+
+    headers.forEach((header,i)=>
+    {
+      obj[header.trim()] =
+      values[i]?.trim();
     });
 
-    // Close menu when a link is clicked (mobile nicety)
-    navMenu?.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target && target.tagName === 'A') {
-        navMenu.classList.remove('active');
-        headerToggle?.setAttribute('aria-expanded', 'false');
-      }
-    });
+    return obj;
+  });
+}
 
-    // Close menu if resizing to desktop (prevents stuck-open state)
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && navMenu?.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        headerToggle?.setAttribute('aria-expanded', 'false');
-      }
-    });
 
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+fetch(CSV_URL)
+.then(res=>res.text())
 
-    // Basic client-side form validation
-    document.querySelector('form.contact-form')?.addEventListener('submit', (e) => {
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const message = document.getElementById('message');
-      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value);
+.then(csv=>
+{
 
-      if (!name.value.trim() || !emailOk || !message.value.trim()) {
-        e.preventDefault();
-        alert('Please fill out all fields with a valid email.');
-      }
-    });
-    
-    
-(function () {
-    const btn = document.getElementById('mailtoBtn');
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('form-status');
+const data =
+parseCSV(csv);
 
-    // CHANGE THIS to your destination email
-    const TO_EMAIL = 'brendenryan99@gmail.com';
-    const SUBJECT = 'A1 Trading website contact';
+const container =
+document.getElementById("products-container");
 
-    function encode(v) { return encodeURIComponent(v || ''); }
+container.innerHTML="";
 
-    btn?.addEventListener('click', () => {
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
+data.forEach(item=>
+{
 
-      // Simple client-side validation
-      const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-      if (!name || !emailOk || !message) {
-        status.textContent = 'Please enter your name, a valid email, and a message.';
-        return;
-      }
+const card =
+document.createElement("article");
 
-      // Compose the email body with line breaks
-      const body = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        '',
-        'Message:',
-        message
-      ].join('\n');
+card.className =
+"product-card";
 
-      const mailtoUrl = `mailto:${encode(TO_EMAIL)}?subject=${encode(SUBJECT)}&body=${encode(body)}`;
 
-      // Open the user's email client
-      window.location.href = mailtoUrl;
+card.innerHTML =
 
-      // Optional: UI feedback
-      status.textContent = 'Opening your email app…';
-    });
-  })();
+`
+<a href="${item.link || '#'}">
 
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTyL2lkqNY2SF9NPQSnYu0wPXhJQ_sPE3QIcdtUOYtrNaf2tBbnY7wq8-kjQDoAJ5aEcQDfkLWSpgHH/pub?gid=0&single=true&output=csv") .then(r => r.text()) .then(csv => { const rows = csv.split("\n").map(r => r.split(",")); console.log(rows); });
+<h3>${item.title || 'No title'}</h3>
+
+<p>${item.description || ''}</p>
+
+<img src="${item.image || 'placeholder.jpg'}">
+
+</a>
+`;
+
+container.appendChild(card);
+
+});
+
+});
 
 
 
-  </script>
+/* =========================
+   Contact Form Mailto
+========================= */
+
+const btn =
+document.getElementById('mailtoBtn');
+
+const form =
+document.getElementById('contactForm');
+
+const status =
+document.getElementById('form-status');
+
+const TO_EMAIL =
+'brendenryan99@gmail.com';
+
+
+btn.onclick = () =>
+{
+
+const name =
+form.name.value.trim();
+
+const email =
+form.email.value.trim();
+
+const message =
+form.message.value.trim();
+
+if(!name || !email || !message)
+{
+status.textContent =
+"Please fill out form";
+
+return;
+}
+
+const body =
+`Name: ${name}
+Email: ${email}
+
+${message}`;
+
+window.location.href =
+`mailto:${TO_EMAIL}?subject=A1 Trading Contact&body=${encodeURIComponent(body)}`;
+
+status.textContent =
+"Opening email client...";
+
+};
+
+
+/* =========================
+   Footer Year
+========================= */
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
 </body>
 </html>
