@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A1 Trading – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A1 Trading — Buy, Sell, Trade retro video games and consoles. NES, SNES, Sega, PlayStation, Nintendo. 1003 E 23rd St. S Suite A, Independence, MO." />
+
+  <style>
+    /* ==== Base / Reset ==== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: #fff; text-decoration: none; }
+    a:hover { color: #FFD700; }
+    :focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      position: static; width: auto; height: auto; padding: 8px 12px;
+      background: #000; color: #fff; border-radius: 8px;
+    }
+
+    /* ==== Header ==== */
+    header {
+      background: #000;
+      padding: 20px 16px;
+      border-bottom: 3px solid #FFD700;
+    }
+
+    /* Title row with hamburger left, title centered */
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* keep title visually centered */
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto 10px auto;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      color: #FFD700;
+      letter-spacing: 0.5px;
+      text-align: center;
+      flex: 0 0 auto;
+    }
+    /* Hamburger button in header (left of title) */
+    .menu-toggle--header {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      background: transparent;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 6px 10px;
+      position: absolute;
+      left: 0; /* sits to the left of the centered title */
+      display: none; /* hidden on desktop by default */
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-left, .header-center, .header-right { flex: 1; }
+    .header-left { text-align: left; }
+    .header-center { text-align: center; }
+    .header-right { text-align: right; }
+
+    .address, .tagline {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .facebook-button,
+    .youtube-button {
+      display: inline-block;
+      padding: 10px 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+    .facebook-button { background-color: #1877F2; color: #fff; }
+    .youtube-button  { background-color: #FF0000; color: #fff; }
+
+    /* ==== Nav ==== */
+    nav {
+      background: #222;
+      padding: 10px 16px;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex: 1;
+    }
+    .nav-links a {
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+    .nav-links a:hover {
+      color: #111;
+      background: #FFD700;
+    }
+
+    /* ==== Hero ==== */
+    .hero {
+      position: relative;
+      min-height: 52vh;
+      padding: 60px 20px;
+      text-align: center;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+
+      /* Background image */
+      background-image: url("images/games.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    /* Overlay for contrast */
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45));
+    }
+    .hero > .hero-content {
+      position: relative; /* above overlay */
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw + 1rem, 3rem);
+      color: #FFD700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      display: inline-block;
+      padding: 8px 14px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: linear-gradient(45deg, #8c6a00, #d4af37, #ffd700);
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+    .btn:hover { background: #FFD700; }
+
+    /* ==== Sections ==== */
+    .section { padding: 40px 20px; }
+    .section .container { max-width: 1100px; margin: 0 auto; }
+    .section h2 { margin-top: 0; font-size: 2rem; color: #FFD700; }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .product-card {
+      background: #222;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #333;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      overflow: hidden; /* hides the bottom of the image */
+
+    }
+    .product-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+    .product-card h3 { margin-top: 0; color: #ffee00fd; }
+    .product-card p { margin: 6px 0; color: #ddd; }
+
+.product-card:hover {
+        border-color: red;
+        transform: scale(1.02); /* Slight zoom effect */
+        cursor: pointer;
+}
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+    }
+    label { font-weight: bold; }
+
+    button {
+      padding: 10px 20px;
+      background: #ffee00fd;
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button:hover { background: #FFD700; }
+
+    /* ==== Footer ==== */
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-top: 3px solid #ffee00fd;
+    }
+
+    /* ==== Responsive (<= 768px) ==== */
+    @media (max-width: 768px) {
+      header .title-row h1 { font-size: 2rem; }
+
+      /* Show hamburger on mobile only */
+      .menu-toggle--header { display: inline-block; }
+
+      .header-bar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header-left, .header-center, .header-right {
+        text-align: center;
+        width: 100%;
+      }
+      .header-right { margin-top: 8px; }
+      .facebook-button, .youtube-button { margin: 6px; }
+
+      .nav-inner { align-items: flex-start; }
+      .nav-links {
+        display: none;              /* hidden until toggled */
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding-top: 10px;
+      }
+      .nav-links.active { display: flex; } /* shown when hamburger clicked */
+    }
+
+    /* Desktop: ensure links always visible when hamburger is hidden */
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header role="banner">
+    <div class="title-row">
+      <button class="menu-toggle--header"
+              aria-controls="site-menu" aria-expanded="false" aria-label="Toggle menu">
+        ☰
+      </button>
+      <h1>A1 Trading</h1>
+    </div>
+
+    <div class="header-bar">
+      <div class="header-left">
+        <p class="address">
+          1003 E 23rd St. S Suite A, Independence, MO, United States
+        </p>
+      </div>
+
+      <div class="header-center">
+        <p class="tagline">BUY — SELL — TRADE</p>
+      </div>
+
+      <div class="header-right">
+        <a class="facebook-button" href="https://www.facebook.com/ItsyourboyA1trading/"
+           target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page">
+          Facebook
+        </a>
+        <a class="youtube-button" href="https://www.youtube.com/@Retrodirt117/videos"
+           target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel">
+          YouTube
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Primary">
+    <div class="nav-inner">
+      <!-- Header hamburger controls this menu -->
+      <div class="nav-links" id="site-menu">
+        <a href="index.html">Home</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="hero" id="home" role="region" aria-label="Hero">
+      <div class="hero-content">
+        <h2>Dive into our Inventory!</h2>
+        <p>Trading Cards • Xbox • Sega • PlayStation • Nintendo</p>
+        <p><a href="trades.html" class="btn">Trades</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+<div class="container">
+
+<h2>Weekly Playstation Inventory</h2>
+
+<div class="products" id="products-container">
+
+<!-- Cards load automatically from Google Sheets -->
+
+</div>
+
+</div>
+</section>
+
+
+<section class="section" id="contact">
+<div class="container">
+
+<h2>Contact Us</h2>
+<h3>Email or Call 816-844-2716</h3>
+
+<form class="contact-form" id="contactForm">
+
+<div class="field">
+<label>Your Name</label>
+<input id="name" name="name" required>
+</div>
+
+<div class="field">
+<label>Your Email</label>
+<input id="email" name="email" required>
+</div>
+
+<div class="field">
+<label>Message</label>
+<textarea id="message" name="message" required></textarea>
+</div>
+
+<button type="button" id="mailtoBtn">Send Message</button>
+
+<p id="form-status"></p>
+
+</form>
+
+</div>
+</section>
+
+
+<footer>
+<p>&copy; <span id="year"></span> A1 Trading</p>
+</footer>
+
+
+<script>
+
+/* =========================
+   Google Sheets CSV Loader
+========================= */
+
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTyL2lkqNY2SF9NPQSnYu0wPXhJQ_sPE3QIcdtUOYtrNaf2tBbnY7wq8-kjQDoAJ5aEcQDfkLWSpgHH/pub?gid=0&single=true&output=csv";
+
+
+function parseCSV(text)
+{
+  const lines = text.trim().split("\n");
+
+  const headers = lines[0].split(",");
+
+  return lines.slice(1).map(line =>
+  {
+    const values = line.split(",");
+
+    let obj = {};
+
+    headers.forEach((header,i)=>
+    {
+      obj[header.trim()] =
+      values[i]?.trim();
+    });
+
+    return obj;
+  });
+}
+
+
+fetch(CSV_URL)
+.then(res=>res.text())
+
+.then(csv=>
+{
+
+const data =
+parseCSV(csv);
+
+const container =
+document.getElementById("products-container");
+
+container.innerHTML="";
+
+data.forEach(item=>
+{
+
+const card =
+document.createElement("article");
+
+card.className =
+"product-card";
+
+
+card.innerHTML =
+
+`
+<a href="${item.link || '#'}">
+
+<h3>${item.title || 'No title'}</h3>
+
+<p>${item.description || ''}</p>
+
+<img src="${item.image || 'placeholder.jpg'}">
+
+</a>
+`;
+
+container.appendChild(card);
+
+});
+
+});
+
+
+
+/* =========================
+   Contact Form Mailto
+========================= */
+
+const btn =
+document.getElementById('mailtoBtn');
+
+const form =
+document.getElementById('contactForm');
+
+const status =
+document.getElementById('form-status');
+
+const TO_EMAIL =
+'brendenryan99@gmail.com';
+
+
+btn.onclick = () =>
+{
+
+const name =
+form.name.value.trim();
+
+const email =
+form.email.value.trim();
+
+const message =
+form.message.value.trim();
+
+if(!name || !email || !message)
+{
+status.textContent =
+"Please fill out form";
+
+return;
+}
+
+const body =
+`Name: ${name}
+Email: ${email}
+
+${message}`;
+
+window.location.href =
+`mailto:${TO_EMAIL}?subject=A1 Trading Contact&body=${encodeURIComponent(body)}`;
+
+status.textContent =
+"Opening email client...";
+
+};
+
+
+/* =========================
+   Footer Year
+========================= */
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
