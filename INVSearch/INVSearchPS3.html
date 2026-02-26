@@ -437,57 +437,7 @@
               </tr>
             </thead>
             <tbody id="values-body">
-              <!-- Sample rows; add your own as needed -->
-              <tr>
-                <td>The Legend of Zelda</td>
-                <td><span class="badge">NES</span></td>
-                <td>Cart only</td>
-                <td>$22</td>
-                <td>$30</td>
-              </tr>
-              <tr>
-                <td>Super Mario Bros 3</td>
-                <td><span class="badge">NES</span></td>
-                <td>Cart only</td>
-                <td>$12</td>
-                <td>$18</td>
-              </tr>
-              <tr>
-                <td>Super Metroid</td>
-                <td><span class="badge">SNES</span></td>
-                <td>Cart only</td>
-                <td>$48</td>
-                <td>$65</td>
-              </tr>
-              <tr>
-                <td>Chrono Trigger</td>
-                <td><span class="badge">SNES</span></td>
-                <td>Complete in box</td>
-                <td>$220</td>
-                <td>$280</td>
-              </tr>
-              <tr>
-                <td>Sonic the Hedgehog</td>
-                <td><span class="badge">Genesis</span></td>
-                <td>Cart + case</td>
-                <td>$10</td>
-                <td>$14</td>
-              </tr>
-              <tr>
-                <td>GoldenEye 007</td>
-                <td><span class="badge">N64</span></td>
-                <td>Cart only</td>
-                <td>$18</td>
-                <td>$25</td>
-              </tr>
-              <tr>
-                <td>Final Fantasy VII</td>
-                <td><span class="badge">PS1</span></td>
-                <td>Complete</td>
-                <td>$30</td>
-                <td>$40</td>
-              </tr>
-            </tbody>
+           </tbody>
           </table>
         </div>
 
@@ -677,6 +627,47 @@
         if (statusEl) statusEl.textContent = 'Opening your email app…';
       });
     })();
+
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnzWiGKEPasPbYugrpgPCwdI7YC227QKPss-tvkiuw4fVoKmkvPf2lmAYrVqTuwQDEXx-mojfId9gN/pub?gid=0&single=true&output=csv";
+
+async function loadTradeValues() {
+  try {
+    const response = await fetch(SHEET_CSV_URL);
+    const csv = await response.text();
+
+    const rows = csv.trim().split("\n").map(r => r.split(","));
+    const tbody = document.getElementById("values-body");
+
+    tbody.innerHTML = "";
+
+    rows.slice(1).forEach(cols => {
+      if (cols.length < 5) return;
+
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${cols[0]}</td>
+        <td><span class="badge">${cols[1]}</span></td>
+        <td>${cols[2]}</td>
+        <td>${cols[3]}</td>
+        <td>${cols[4]}</td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+    updateFilters();
+  } catch (err) {
+    console.error("Failed to load sheet:", err);
+  }
+}
+
+function updateFilters() {
+  window.rows = Array.from(document.querySelectorAll('#values-body tr'));
+}
+
+loadTradeValues();
+
   </script>
 </body>
 </html>
