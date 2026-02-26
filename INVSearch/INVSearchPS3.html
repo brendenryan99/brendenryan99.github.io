@@ -420,7 +420,7 @@
             <option>Controller</option>
             <option>Headset</option>
             <option>Other</option>
-            <option>Other2</option>
+            <option>Console</option>
           </select>
         </div>
 
@@ -567,7 +567,7 @@
   if (lastUpdatedEl) lastUpdatedEl.textContent = fmt;
 
   // =========================
-  // FILTER SYSTEM (FIXED)
+  // FILTER SYSTEM 
   // =========================
 
   const searchInput = document.getElementById('search');
@@ -602,6 +602,8 @@
         (matchTitle && matchType)
           ? ''
           : 'none';
+
+          const MAX_ROWS = 2; // Limit of rows to display
     });
   }
 
